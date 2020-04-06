@@ -1,0 +1,4 @@
+Targets
+Lock-On
+	Create a class that holds instances of the type of actor we will use for enemies, we can use this as a list for lock-on.
+Raycast hitscan

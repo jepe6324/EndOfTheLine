@@ -6,6 +6,8 @@
 #include "GameFramework/Pawn.h"
 #include "TestPawn.generated.h"
 
+class ATestActor;
+
 UCLASS()
 class ENDOFTHELINE_API ATestPawn : public APawn
 {
@@ -15,6 +17,8 @@ public:
 	// Sets default values for this pawn's properties
 	ATestPawn();
 
+	ATestActor* target_;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -23,6 +27,7 @@ protected:
 	void MoveRight(float amount);
 	void Turn(float amount);
 	void LookUp(float amount);
+	void LockOn();
 
 	class UFloatingPawnMovement* floatingPawnMovement_;
 

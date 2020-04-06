@@ -18,8 +18,6 @@ ATestActor::ATestActor()
 void ATestActor::BeginPlay()
 {
 	Super::BeginPlay();
-
-	staticMesh_->SetWorldScale3D(FMath::VRand());
 	
 }
 

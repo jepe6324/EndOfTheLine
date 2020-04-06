@@ -1,11 +1,12 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "TestPawn.h"
+#include "Components/StaticMeshComponent.h"
 #include "Components/InputComponent.h"
 #include "GameFramework/FloatingPawnMovement.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
+#include "TestActor.h"
 
 // Sets default values
 ATestPawn::ATestPawn()
@@ -22,7 +23,6 @@ ATestPawn::ATestPawn()
 	cameraArm_->TargetArmLength = 500.f;
 
 	camera_ = CreateDefaultSubobject<UCameraComponent>("CameraComponent");
-	//camera_->SetRelativeLocation(FVector(-500.f, 0.f, 0.f));
 	camera_->SetupAttachment(cameraArm_);
 
 	SetRootComponent(staticMesh_);
@@ -35,7 +35,8 @@ ATestPawn::ATestPawn()
 void ATestPawn::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	target_ = nullptr;
 }
 
 void ATestPawn::MoveForward(float amount)
@@ -58,11 +59,15 @@ void ATestPawn::LookUp(float amount)
 	AddControllerPitchInput(amount);
 }
 
+void ATestPawn::LockOn()
+{
+	target_ = FindObject<ATestActor>(ANY_PACKAGE, TEXT("Enemy"));
+}
+
 // Called every frame
 void ATestPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 // Called to bind functionality to input
@@ -72,7 +77,10 @@ void ATestPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &ATestPawn::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ATestPawn::MoveRight);
-	PlayerInputComponent->BindAxis("Turn", this, &ATestPawn::Turn);
-	PlayerInputComponent->BindAxis("LookUp", this, &ATestPawn::LookUp);
+
+	PlayerInputComponent->BindAxis("TurnRate", this, &ATestPawn::Turn);
+	PlayerInputComponent->BindAxis("LookUpRate", this, &ATestPawn::LookUp);
+
+	PlayerInputComponent->BindAction("LockOn", EInputEvent::IE_Pressed, this, &ATestPawn::LockOn);
 }
 

@@ -22,9 +22,10 @@ float UVectorCWAngle2D::VectorCWAngle2D(FVector a, FVector b)
 
 float UVectorCWAngle2D::SwitchTargetAngleScore(float angle)
 {
+
    if (angle < 0)
    {
-      angle += 6;
+      angle += PI * 2;
    }
    return angle;
 }

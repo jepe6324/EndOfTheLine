@@ -29,3 +29,27 @@ float UVectorCWAngle2D::SwitchTargetAngleScore(float angle)
    }
    return angle;
 }
+
+
+float wrap(float val, float min, float max)
+{
+   float tmp;
+   while (val > max)
+   {
+      tmp = val - fabs(max);
+      val = min + tmp;
+   }
+   while (val < min)
+   {
+      tmp = val + fabs(min);
+      val = max + tmp;
+   }
+   return val;
+}
+
+/*
+-5 , -3, 3
+5, -3, 3
+
+
+*/

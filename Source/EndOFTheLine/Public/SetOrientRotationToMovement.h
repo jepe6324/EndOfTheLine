@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "SetOrientRotationToMovement.generated.h"
-#include "Actor.h"
 
 /**
  * 

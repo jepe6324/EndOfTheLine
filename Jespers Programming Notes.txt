@@ -1,4 +1,8 @@
 Targets
 Lock-On
 	Make it rotate the other way.
+right gun lock on
+	check the right stick vector every frame when locked on
+	get the enemy with the closest angle compared to the stick.
+		Max 90 degrees from the main cardinal direction it is pointing. Or +- pi/2
 Raycast hitscan

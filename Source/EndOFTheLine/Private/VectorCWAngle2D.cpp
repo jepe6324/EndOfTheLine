@@ -4,6 +4,16 @@
 #include "VectorCWAngle2D.h"
 #include "Kismet/KismetMathLibrary.h"
 
+float wrap(float val, float min, float max) // -1.5, ,-3, 3
+{
+   max -= min; //6
+   val -= min; // 1.5
+   modff(val, &max); // 1.5
+   val += min; // - 3
+
+   return val;
+}
+
 float UVectorCWAngle2D::VectorCWAngle2D(FVector a, FVector b)
 {
    FVector2D vecA;
@@ -30,26 +40,13 @@ float UVectorCWAngle2D::SwitchTargetAngleScore(float angle)
    return angle;
 }
 
-
-float wrap(float val, float min, float max)
+float UVectorCWAngle2D::AimRightGunScore(FVector a, FVector b)
 {
-   float tmp;
-   while (val > max)
-   {
-      tmp = val - fabs(max);
-      val = min + tmp;
-   }
-   while (val < min)
-   {
-      tmp = val + fabs(min);
-      val = max + tmp;
-   }
-   return val;
+   float ret = VectorCWAngle2D(a, b);
+   ret = wrap(ret + ( PI / 2 ), -PI, PI);
+   ret = fabsf(ret);
+   return ret;
 }
 
 /*
--5 , -3, 3
-5, -3, 3
-
-
 */

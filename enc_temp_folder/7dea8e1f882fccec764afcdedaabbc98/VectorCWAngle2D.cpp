@@ -4,12 +4,12 @@
 #include "VectorCWAngle2D.h"
 #include "Kismet/KismetMathLibrary.h"
 
-float wrap(float val, float min, float max) // -1.5, ,-3, 3
+float wrap(float val, float min, float max)
 {
-   max -= min; //6
-   val -= min; // 1.5
-   modff(val, &max); // 1.5
-   val += min; // - 3
+   max -= min;
+   val -= min;
+   modff(val, &max);
+   val += min;
 
    return val;
 }

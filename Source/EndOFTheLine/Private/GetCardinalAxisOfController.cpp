@@ -20,11 +20,11 @@ FVector2D UGetCardinalAxisOfController::GetCardinalAxisOfController(FVector2D ve
    else // This means they are aiming either forward or backwards
    {
       if (vector.Y >= 0)
-      { // Forward
+      { // Backward
          ret.Y = 1;
       }
       else
-      { // Backward
+      { // Forward
          ret.Y = -1;
       }
    }

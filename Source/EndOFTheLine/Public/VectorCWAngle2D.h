@@ -16,11 +16,13 @@ class ENDOFTHELINE_API UVectorCWAngle2D : public UBlueprintFunctionLibrary
 
    UFUNCTION(BlueprintPure, Category = "Lock-On")
    static float VectorCWAngle2D(FVector a, FVector b);
+   static float VectorCWAngle2D(FVector2D a, FVector b);
+
 
    UFUNCTION(BlueprintPure, Category = "Lock-On")
       static float SwitchTargetAngleScore(float angle);
 
    UFUNCTION(BlueprintPure, Category = "Lock-On")
-      static float AimRightGunScore(FVector a, FVector b);
+      static float AimRightGunScore(FVector a, FVector b, FVector2D controllerCardinal);
 };
 

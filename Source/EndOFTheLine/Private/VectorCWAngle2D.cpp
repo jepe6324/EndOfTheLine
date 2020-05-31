@@ -8,7 +8,7 @@ float wrap(float val, float min, float max)
 {
    max -= min;
    val -= min;
-   modff(val, &max);
+It's    modff(val, &max);
    val += min;
 
    return val;
